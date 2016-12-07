@@ -1,9 +1,3 @@
-.container{
-  margin: 0px;
-  padding: 0px;
-  width:100%;
-}
-
 .brand-logo{
   margin-left:10px;  
 }
@@ -12,9 +6,35 @@ footer{
   padding: 10px; 
 }
 
-.company{
-  color: yellow;
+#color
+{
+  color: black;
+  font-family: Aharoni;
+  font-size: 20px;
+
 }
+
+nav
+{
+  height: 100px;
+  background-color: white;
+}
+
+#colors
+{
+  color: white;
+  font-family: Aharoni;
+  font-size: 40px;
+  text-align: right;
+}
+
+.row
+{
+  width: 100%;
+}
+
+
+
 
 /*
 
