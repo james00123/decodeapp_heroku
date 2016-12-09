@@ -2,65 +2,45 @@
 
 class App{
   constructor(){
-    this.media = [
-    {
-      "img" : "http://media.buzzle.com/media/images-en/gallery/recipes/french-food/900-119624610-french-croissants.jpg",
-      "alignment" : "left-align",
-      "caption": "Delicous Meal",
-      "slogan": "Completes your day.",
-    },
-    {
-      "img" : "http://2.bp.blogspot.com/-0jz-bTP0i8s/Ui8NeRhHaxI/AAAAAAAAEAw/e1e2UBs_6m4/s1600/simitsimit.jpg",
-      "alignment" : "right-align",
-      "caption": "Amazing Breakfast",
-      "slogan": "Removes your Negativities",
-    },
-    {
-      "img" : "http://johansensdev3.wpengine.com/wp-content/uploads/2014/05/Pastel-de-Belem-1.jpg",
-      "alignment" : "center-align",
-      "caption": "Right Selection",
-      "slogan": "Enhances your Personality",
-    },
-    {
-      "img" : "http://www.travelbook.ph/blog/cms/wp-content/uploads/old-site/inline/1742_pizza_300.jpg",
-      "alignment" : "center-align",
-      "caption": "Remedy Cafe",
-      "slogan": "Enlightens your Day.",
-    }
+    this.room = [
+
+  {
+        "id": 1,
+        "name": "Honey Moon Room",
+        "details": "A good room to spend the whole night for a newly Wed's.",
+        "image": "img/room1.jpg", 
+      },
+      {
+        "id": 2,
+        "name": "Perfect Rest Room",
+        "details": "A Perferct place to rest and forget all the problems.",
+        "image": "img/room2.jpg",
+       
+      },
+      {
+        "id": 3,
+        "name": "Family Room",
+        "details": "A great Room for a Family and have time to each Family member.",
+        "image": "img/room3.jpg",
+      },
+      {
+        "id": 4,
+        "name": "Single Deluxe Room",
+        "details": "A special Room made for a single person that caters all he/she needs.",
+        "image": "img/room4.jpg",
+       
+      },
+      {
+        "id": 5,
+        "name": "Beach Out Room",
+        "details": "A great way to relax while in the beach.A cozy and comfortable room.",
+        "image": "img/room5.jpg",
+      }
     ];
-
-    this.b = [
-
-    {
-       "coffeeid": 1,
-      "titles": "JAMS",
-      "content": "Delicous Meal", 
-      "img" : "img/UBE.jpg",
-    },
-    {
-      "coffeeid": 2,
-      "titles": "CUP CAKES",
-      "content": "Amazing Meal.",
-      "img" : "img/cake.jpg",
-    },
-    {
-      "coffeeid": 3,
-      "titles": "FRAPPES", 
-      "content": "Delicous Meal",
-      "img" : "img/frappe.jpg",
-    },
-    {
-      "coffeeid": 4,
-      "titles": "coffee", 
-      "content": "Delicous Meal",
-      "img" : "img/coffe.jpg",
-    }
-
-    ];
-
-   
-
+      
+  
   }
+
   render(html, component){
 
     component.innerHTML += html;
@@ -71,34 +51,82 @@ class App{
     component.innerHTML = html;
   }
 
-
-  cafeDesign(){
-    let coffeeid = document.getElementById('MusicnAme');
-    let title = document.getElementById('mUsic');
-    let content = document.getElementById('mUSICdesc');
-    let img = document.getElementById('musicPic');
+roomDesign1(){
+    
+    
+    let name = document.getElementById('room2');
+    let details = document.getElementById('room3');
+    let image = document.getElementById('room5');
   
 
-    let b = {      
-      "coffeeid": coffeeid.value,
-      "title": title.value,
-      "content": content.value,
-      "img": img.value,
+    let room = {      
     
-     
-    };
+      "name": name.value,
+      "details": details.value,
+      "image": image.value,
+      };
 
-
-    this.b.push(b);
+    name.value = details.value = image.value = '';
+    this.room.push(room);
 
     
-    coffeeid.value = title.value = content.value = img.value = ''; 
+    
   } 
 
-  
+  roomDelete(key){
+    let r = this.room;
+    for(let i=0;i<r.length;i++){
+      if(r[i].id == key){
+        this.room.splice(i,1);
+        break;
+      }
+    }   
+    this.roomList();
+  }
 
+  updateRoom(id){
+
+    let qwe = {
+      "id" :  id,
+      "name" : $('#asd').val(),
+      "description" : $('#zxc').val()
+    }
+
+    let r = this.room;
+    for(let i=0;i<r.length;i++){
+      if(r[i].id == id){
+        r[i] = qwe;
+        break;
+      }
+    }
+
+    this.roomList();
 
 }
+  SearchRoomById(id){
+    let r = this.room;
+    for(let i=0;i<r.length;i++){
+      if(id==r[i].id){
+        return r[i];
+      }
+    }
+  } 
+
+ 
+
+  SearchRoom(name){
+    let objects = [];
+    let r = this.room;
+    for(let i=0;i<r.length;i++){
+      let expr = (r[i].name.toUpperCase().indexOf(name.toUpperCase()) > -1);
+      if(expr){
+        objects.push(r[i]);
+      }
+    }
+    return objects;
+  }
+}
+
 
 class Component extends App{
   constructor(){
@@ -106,186 +134,137 @@ class Component extends App{
     super();
   }
 
-  cafeDesign(){
-    let html = `
-     
+roomDesignLayout(){
+  let html = `
 
 <nav>
-    <div class="nav-wrapper">
-    <a href="#"onclick="component.cafeList()" class="brand-logo center"><img src="img/logo3.jpg"></img></a>
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
-    <li><a onclick="onclick="component.Home()" class="waves-effect waves-red btn-small" href="#"><b id="color">Home</b></a></li>
-    <li><a onclick=" onclick="component.addCoffees()" class="waves-effect waves-teal btn-small" href="#"><b id="color">Order</b></a></li>
-    <li><a onclick="onclick="component.cafeList()" class="waves-effect waves-yellow btn-small" href="#"><b id="color">Review</b></a></li>        
+  <div class="nav-wrapper #30C1FF blue">
+    <a href="#!" onclick="component.Home()" class="brand-logo">Room App</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#" onclick="component.Home()">Home</a></li>
+      <li><a href="#" onclick="component.roomList()">Make your Room</a></li>
+      
+      <li><a onclick="component.latestRoom()">Create</a></li>
     </ul>
-    </div>
-    </nav>
+  </div>
+</nav>
 
-
-
-
-
-        
-
-       
-      </ul>
-
-     
-    </div>
-    </nav>
-
+<div class="slider" >
+    <ul class="slides">
+      <li>
+        <img src="img/marco.jpg"> <!-- random image -->
+        <div class="caption left-align">
+        <h5>Fell at Home.</h5> 
+        </div>
+      </li>
+      <li>
+        <img src="img/mandaya.jpg"> <!-- random image -->
+        <div class="caption right-align">
+          <h3>Limited Editions</h3>
+        </div>
+      </li>
+      <li>
+        <img src="img/apo.jpg"> <!-- random image -->
+        <div class="caption left-align">
+          <h5 class="light grey-text text-lighten-3">Makes you feel comfortable</h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/water.jpg"> <!-- random image -->
+        <div class="caption right-align">
+          <h3>Another way to Relax!</h3>
+          
+        </div>
+      </li>
+    </ul>
+  </div>
 
 </div>
- 
-  <div class="slider">
-    <ul class="slides">
 
-  
-    `;
-
-    for(let i=0;i<this.media.length;i++){
-      html += `
-      <li>
-      <img src="${this.media[i].img}">
-      <div class="caption ${this.media[i].alignment}">
-      <h3>${this.media[i].caption}</h3>
-      <h4 class="light grey-text text-lighten-3">${this.media[i].slogan}</h4>
-      </div>
-      </li>
-
-      `;
-    }
- html+=`
-      
-          
 
          <div id="Home"></div>
-        <div id="recent"></div>
-        <div id="cafeView"></div>
-        <div id="cafeList"></div>
-        <div id="addCoffees"></div>
-     
+        <div id="roomRecent"></div>
+        <div id="Room"></div>
+        <div id="roomList"></div>
+        <div id="latestRoom"></div>
         
   
-                  <footer class="page-footer  blue accent-4">
+        <footer class="page-footer #30C1FF blue">
           <div class="container">
             <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Music App</h5>
-                <p class="grey-text text-lighten-4">Alright Reserved</p>
+              <div class="col l6 ">
+                <h2 class="white-text">Room App</h2>
+                <p class="grey-text text-lighten-4">Make a Room instantly.</p>
               </div>
-          
-                
-             
             </div>
           </div>
-          <div class="footer-copyright">
+          <div class="footer-copyright  #30C1FF blue">
             <div class="container">
-           
+            <img src="img/ccc.png" width="50px">
+            © 2016 Copyright 
             </div>
           </div>
         </footer>
+            
 
-    `;
+
+`;
 
     this.reRender(`
       ${html}
 
       `,document.getElementById("app"));
-    this.recent();    
+    this.roomRecent();    
   }
 
-  recent(){
-    
-    let html = `
-
-   <div class="carousel carousel-slider">
-    <a class="carousel-item" href="#one!"><img src="https://akosimacoy.files.wordpress.com/2015/04/make-your-own-kind-of-music.jpg"></a>
-    <a class="carousel-item" href="#two!"><img src="img/Music.jpg"></a>
-    <a class="carousel-item" href="#three!"><img src="http://pre05.deviantart.net/7df4/th/pre/f/2012/207/6/0/music_is_life_by_kelseysparrow67-d58ph0q.jpg"></a>
-    <a class="carousel-item" href="#four!"><img src="img/My.jpg"></a>
-  </div>
-             <div class="row">
-    `;
-
-    let r = this.b;
-    let count = 0;
-    for(let i=(r.length-1);i>=0;i--){
-      if(count++ === 4)break;
-      html+= `
-   <div class="col s8 m6">
-          <div class="card large hoverable">
-            <div class="card-image">
-              <img src="${r[i].img}">
-              <span class="card-title">${r[i].titles}</span>
-            </div>
-            <div class="card-content">
-              <p>${r[i].content}</p>
-              
-            </div>
-            <div class="card-action">
-              <a href="#" onclick="component.cafeView(${r[i].coffeeid})">Details</a>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    html += `</div>`;
-
-    this.render(`   
-      ${html}
-      `,document.getElementById("recent"));
-  }
-
-  cafeView(coffeeid){
-    let r = this.coffeesearchId(coffeeid);
+Room(id){
+    let r = this.SearchRoomById(id);
 
     let html = `
-      <h5 class="center-align">${r.titles}</h5>
-      <div class="row">       
-        <div class="col s12 m12">
-          <div class="card horizontal small">
-            <div class="card-image">
-              <img src="${r.img}">
-            </div>
-            <div class="card-stacked">
-              <div class="card-content">
-                <p>${r.content}</p>
-                
-              </div>
-            <div class="card-action small">               
-                <span onclick="component.deleteCoffees(${r.coffeeid})" class="new badge small red" data-badge-caption="">Delete</span>
-               <span onclick="component.cafeList()" class="new badge small" data-badge-caption="">Back to Cafe</span>
-              </div>            
-            </div>     
-          </div>   
-          
-        </div>      
+
+    <div class="col s12 m7">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="${r.image}">
       </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p>${r.details}</p>
+        </div>
+        <div class="card-action">
+          <span onclick="component.roomDelete(${r.id})" class="new badge small" data-badge-caption="">Remove</span>
+               <span onclick="component.roomList()" class="new badge small" data-badge-caption="">Back</span>
+               <span onclick="component.updateRoom()" class="new badge small" data-badge-caption="">Update</span>
+        </div>
+      </div>
+    </div>
+  </div>
+            
+
     `;
 
     this.reRender(`   
       ${html}     
-      `,document.getElementById("cafeView"));
-    $('#cafeView').show();
-    $('#recent').hide();
-    $('#cafeList').hide();
-    $('#addCoffees').hide();
-      $('#Home').hide();
+      `,document.getElementById("Room"));
+    $('#Room').show();
+    $('#roomRecent').hide();
+    $('#roomList').hide();
+    $('#latestRoom').hide();
+    $('#buyList').show();
+    $('#Home').hide();
   }
 
-  cafeList(){
+
+  roomList(){
     let html = `
 
- 
 
       <br/>
         <nav>
-          <div class="nav-wrapper white">
+          <div class="nav-wrapper #30C1FF blue">
           <form>
             <div class="input-field">       
-              <input onkeyup="component.cafeItem(this.value)" id="search" type="search" placeholder="Search" required>
+              <input onkeyup="component.roomItems(this.value)" id="search" type="search" placeholder="Search" required>
               <label for="search"><i class="material-icons">search</i></label>
               <i class="material-icons">close</i>
             </div>
@@ -297,23 +276,23 @@ class Component extends App{
     `;
 
     html += `
-      <div class="row" id="cafeItem">
+      <div class="row" id="roomItems">
     `;
-    let r = this.b;
+
+    let r = this.room;
     for(let i=0;i<r.length;i++){
       html+= `
-        <div class="col s6 m6">
-          <div class="card large hoverable">
+      <div class="col s12 m4">
+          <div class="card small hoverable">
             <div class="card-image">
-              <img src="${r[i].img}">
-              <span class="card-title">${r[i].titles}</span>
+              <img src="${r[i].image}">
+              <span class="card-title">${r[i].name}</span>
             </div>
             <div class="card-content">
-              <p>${r[i].content}</p>
-               
+              <p>${r[i].details}</p>
             </div>
             <div class="card-action">
-              <a href="#" onclick="component.cafeView(${r[i].coffeeid})">Details</a>
+              <a href="#" onclick="component.Room(${r[i].id})">Details</a>
             </div>
           </div>
         </div>
@@ -324,56 +303,148 @@ class Component extends App{
 
     this.reRender(`
       ${html}
-      `,document.getElementById("cafeList"));
-    $('#cafeList').show();
-    $('#cafeView').hide();
-    $('#recent').hide();
-    $('#addCoffees').hide();       
-         $('#Home').hide();
+      `,document.getElementById("roomList"));
+    $('#roomList').show();
+    $('#Room').hide();
+    $('#roomRecent').hide();
+    $('#latestRoom').hide();  
+    $('#buyList').show();  
+    $('#Home').hide();
   }
 
-  cafeItem(titles){
+roomItems(name){
     let html = ``;
-    let r = this.searchCoffee(titles);
+    let r = this.SearchRoom(name);
     for(let i=0;i<r.length;i++){
       html+= `
         <div class="col s12 m4">
           <div class="card small hoverable">
             <div class="card-image">
-              <img src="${r[i].img}">
-              <span class="card-title">${r[i].titles}</span>
+              <img src="${r[i].image}">
+              <span class="card-title">${r[i].name}</span>
             </div>
             <div class="card-content">
-              <p>${r[i].content}</p>
-               
+              <p>${r[i].details}</p>
             </div>
             <div class="card-action">
-              <a href="#" onclick="component.cafeView(${r[i].coffeeid})">More</a>
+              <a href="#" onclick="component.Room(${r[i].id})">More</a>
             </div>
           </div>
         </div>
       `;
     }   
+
     this.reRender(`
       ${html}
-      `,document.getElementById("cafeItem"));
-    $('#cafeList').show();
-    $('#cafeView').hide();
-    $('#recent').hide();  
-    $('#addCoffees').hide();  
-        $('#Home').hide();    
+      `,document.getElementById("roomItems"));
+    $('#roomList').show();
+    $('#Room').hide();
+    $('#roomRecent').hide();  
+    $('#latestRoom').hide();
+    $('#buyList').show();
+    $('#Home').hide();    
   }
 
-  addCoffees(){
+  updateExFeeling(id){
+    
+    let html = `
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="asd" type="text" class="validate" value="${this.room[id].name}">          
+        </div>
+        <div class="input-field col s6">
+          <input id="zxc" type="text" class="validate" value="${this.room[id].details}">
+        </div>
+      </div>
+      <span onclick="component.buyList()" class="new badge small" data-badge-caption="">Update</span>
+      <hr/>
+    `;  
+    this.reRender(`
+      ${html}
+      `,document.getElementById("roomItems"));
+    $('#roomList').show();
+    $('#Room').hide();
+    $('#roomRecent').hide();  
+    $('#latestRoom').hide();
+    $('#buyList').show();
+    $('#Home').hide();    
+  }
+
+  roomRecent(){
+    
     let html = `
 
- 
 
 
+      <div class="row">
+    `;
 
-    
+    let r = this.room;
+    let count = 0;
+    for(let i=(r.length-1);i>=0;i--){
+      if(count++ === 6)break;
+      html+= `
+     <div class="col s12 m4">
+          <div class="card small hoverable">
+            <div class="card-image">
+              <img src="${r[i].image}">
+              <span class="card-title">${r[i].name}</span>
+            </div>
+            <div class="card-content">
+              <p>${r[i].details}</p>
+            </div>
+            <div class="card-action">
+              <a href="#" onclick="component.Room(${r[i].id})">Details</a>
+            </div>
+          </div>
+        </div>
 
-         
+      `;
+    }
+
+    html += `</div>`;
+
+    this.render(`   
+      ${html}
+      `,document.getElementById("roomRecent"));
+  }
+
+  latestRoom(){
+    let html = `
+
+   
+     
+          
+       <div class="row">
+
+            <div class="input-field col s6 ">
+            <h3>Your Room</h3>
+              <input disabled value="${this.room.length+1}" id="room" type="text"class=" validate" >
+            </div>
+              <div class="row">
+          <div class="input-field col s6 ">
+              <input id="room2" type="text" class=" vintage">
+              <label for="room2">Room Name</label>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="input-field col s6 ">
+              <input id="room3" type="text" class="vintage">
+             <label for="room3">Room Details</label>
+            </div>
+
+            <div class="row">
+            <div class="input-field col s6 ">
+              <input id="room5" type="text" class="vintage">
+              <label for="room5">Enter Link Address Picture</label>
+            </div>
+       
+        <div align="left">
+       
+       <button onclick="component.roomList()" class="btn #ffa726 orange lighten-1">Back</button>
+       <button onclick="component.roomDesign1()" class="btn #ffa726 orange lighten-1">Save</button> 
+         </div>
         
       
 
@@ -381,68 +452,38 @@ class Component extends App{
 
     this.reRender(`
       ${html}
-      `,document.getElementById("addCoffees"));
-    $('#addCoffees').show();
-    $('#MusicList').hide();
-    $('#cafeView').hide();
-    $('#recent').hide();  
+      `,document.getElementById("latestRoom"));
+    $('#latestRoom').show();
+    $('#roomList').hide();
+    $('#Room').hide();
+    $('#roomRecent').hide(); 
+    $('#buyList').show();
     $('#Home').hide();    
   }
 
-  
+  // buyList(){
 
-deleteCoffees(key){
-    let r = this.b;
-    for(let i=0;i<r.length;i++){
-      if(r[i].coffeeid == key){
-        this.b.splice(i,1);
-        break;
-      }
-    }   
-    this.MusicList();
-  }
+  // }
+     
 
-  coffeesearchId(coffeeid){
-    let r = this.b;
-    for(let i=0;i<r.length;i++){
-      if(coffeeid==r[i].coffeeid){
-        return r[i];
-      }
-    }
-  } 
-
-  searchCoffee(titles){
-    let objects = [];
-    let r = this.b;
-    for(let i=0;i<r.length;i++){
-      let expr = (r[i].titles.toUpperCase().indexOf(titles.toUpperCase()) > -1);
-      if(expr){
-        objects.push(r[i]);
-      }
-    }
-    return objects;
-  }
-
-
-Home(){
+  Home(){
   let html=`
 
-
   `;
+
+
    this.reRender(`
       ${html}
-      `,document.getElementById("addCoffees"));
-    $('#addCoffees').hide();
-    $('#cafeList').hide();
-    $('#cafeView').hide();
-    $('#recent').show(); 
-     $('#Home').hide();  
-   
-   
+      `,document.getElementById("latestRoom"));
+    $('#latestRoom').hide();
+    $('#roomList').hide();
+    $('#Room').hide();
+    $('#roomRecent').show(); 
+    $('#buyList').show(); 
+    $('#Home').hide();  
 
 }
 
-
 } 
 let component = new Component();
-component.cafeDesign();
+component.roomDesignLayout();

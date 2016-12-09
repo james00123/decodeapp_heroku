@@ -3,40 +3,29 @@
  * Copyright 2014-2015 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
-	
-  /* Preserve aspet ratio */
-  min-width: 100%;
-  min-height: 100%;BEBEB;
+  .ilike-blue-container {
+    @extend .blue, .lighten-4;
+  }
+
+  body {
+
+background:url(../img/vintage.jpg);
+background-repeat:no-repeat;
+background-size:cover;
+background-attachment: fixed;
+background-position: center center;
+
 }
 
-.materialize-violet {
-  background-color: #8e24aa !important; 10px;
-    text-align: right;
-}
-form {
-  background: -webkit-linear-gradient(bottom, #241F1F, #433433  175px);
-  background: -moz-linear-gradient(bottom, #241F1F, #433433 175px);
-  background: linear-gradient(bottom, #241F1F, #433433 175px);
-  margin: auto;
-  position: relative;
-  width: 900px;
-  height: 800px;
-  font-family: Tahoma, Geneva, sans-serif;
-  font-size: 14px;
-  font-style: italic;
-  line-height: 24px;
-  font-weight: bold;
-  color: #81817A;
-  text-decoration: none;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #FFF802;
-  border: inset 1px solid #FAF203;
-  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+.container{
+  margin: 0px;
+  padding: 0px;
+  width: : 50px;
 }
 
+.materialize-red {
+  background-color: #e51c23 !important;
+}
 
 .materialize-red-text {
   color: #e51c23 !important;
@@ -2189,13 +2178,7 @@ html {
  * Remove default margin.
  */
 body {
- background:url(../img/bground.png);
-background-repeat:no-repeat;
-background-size:cover;
-background-attachment: fixed;
-background-position: center center;
-  
-  
+  margin: 0;
 }
 
 /* HTML5 display definitions
@@ -2301,7 +2284,6 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 h1 {
-font-family: Tahoma, Geneva, sans-serif;
   font-size: 2em;
   margin: 0.67em 0;
 }
@@ -4518,7 +4500,7 @@ small {
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #C0C0C0;
+  background-color: #fff;
   transition: box-shadow .25s;
   border-radius: 2px;
 }
@@ -4639,7 +4621,7 @@ small {
 }
 
 .card .card-image .card-title {
-  color: #d50000;
+  color: #fff;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -4668,14 +4650,14 @@ small {
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-  color: #040404;
+  color: #ffab40;
   margin-right: 20px;
   transition: color .3s ease;
   text-transform: uppercase;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
-  color: #040404;
+  color: #ffd8a6;
 }
 
 .card .card-reveal {
@@ -6038,7 +6020,7 @@ textarea.materialize-textarea + label:after {
 }
 
 .input-field label {
-  color: #050505;
+  color: #9e9e9e;
   position: absolute;
   top: 0.8rem;
   left: 0;
