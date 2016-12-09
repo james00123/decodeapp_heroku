@@ -192,7 +192,7 @@ roomDesignLayout(){
         <footer class="page-footer #30C1FF blue">
           <div class="container">
             <div class="row">
-              <div class="col l6 ">
+              <div class="col m6 ">
                 <h2 class="white-text">Room App</h2>
                 <p class="grey-text text-lighten-4">Make a Room instantly.</p>
               </div>
